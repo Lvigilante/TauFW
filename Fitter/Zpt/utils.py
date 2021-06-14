@@ -4,32 +4,19 @@
 from config.samples import *
 from TauFW.common.tools.file import ensuredir, ensureTFile, ensureTDirectory
 from TauFW.Plotter.plot.Stack import Stack, Plot, LOG, close
-from ROOT import gStyle, gROOT, gSystem, kRed
+from ROOT import gStyle, gROOT, gSystem, gDirectory, kRed, kBlue, kDashed
 
 
-def writehist(hist,name,title,xtitle,ytitle,ztitle=None,**kwargs):
+def writehist(hist,name,title,xtitle,ytitle,ztitle=None,verb=0):
   """Help function to write a histogram to a file."""
   hist.SetTitle(title)
   hist.GetXaxis().SetTitle(xtitle)
   hist.GetYaxis().SetTitle(ytitle)
   if ztitle:
     hist.GetZaxis().SetTitle(ztitle)
+  if verb>=1:
+    print ">>> writehist: Writing %r as %r to %s"%(hist.GetName(),name,gDirectory.GetPath())
   hist.Write(name,hist.kOverwrite)
-  
-
-def setmax(hist,yvar=0.4):
-  """Set maximum & minimum value 1+-yvar. Keep error."""
-  for i in range(0,hist.GetNcells()+2):
-    yval = hist.GetBinContent(i)
-    if yval>1.+yvar:
-      yval = 1.+yvar
-    elif yval<1.-yvar:
-      yval = 1.-yvar
-    else:
-      continue
-    yerr = hist.GetBinError(i)
-    hist.SetBinContent(i,yval)
-    hist.SetBinError(i,yerr)
   
 
 def getdyhist(hname,hists,tag="",verb=0):
