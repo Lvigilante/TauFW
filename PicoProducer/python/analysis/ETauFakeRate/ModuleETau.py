@@ -31,7 +31,7 @@ class ModuleETau(ModuleTauPair):
     
     # CORRECTIONS
     if self.ismc:
-      self.eleSFs  = ElectronSFs(year=self.year) # electron id/iso/trigger SFs
+      self.eleSFs  = ElectronSFs(era=self.era) # electron id/iso/trigger SFs
       self.tesTool = TauESTool(tauSFVersion[self.year]) # real tau energy scale corrections
       self.fesTool = TauFESTool(tauSFVersion[self.year]) # e -> tau fake energy scale
       self.tauSFs  = TauIDSFTool(tauSFVersion[self.year],'DeepTau2017v2p1VSjet','Medium')
@@ -184,6 +184,20 @@ class ModuleETau(ModuleTauPair):
     self.out.lepton_vetoes[0]       = self.out.extramuon_veto[0] or self.out.extraelec_veto[0] or self.out.dilepton_veto[0]
     self.out.lepton_vetoes_notau[0] = extramuon_veto or extraelec_veto or dilepton_veto
     
+    # TIGHTEN PRE-SELECTION
+    if self.dotight: # do not save all events to reduce disk space
+      fail = (self.out.lepton_vetoes[0] and self.out.lepton_vetoes_notau[0]) or\
+             (tau.idMVAoldDM2017v2<2 and tau.idDeepTau2017v2p1VSjet<1) or\
+             (tau.idAntiMu<2  and tau.idDeepTau2017v2p1VSmu<1) or\
+             (tau.idAntiEle<2 and tau.idDeepTau2017v2p1VSe<2)
+      if (self.tes not in [1,None] or self.tessys!=None) and (fail or tau.genPartFlav!=5):
+        return False
+      if (self.ltf!=1 or self.fes!=None) and tau.genPartFlav<1 and tau.genPartFlav>4:
+        return False
+      ###if self.jtf!=1 and tau.genPartFlav!=0:
+      ###  return False
+
+
     
     # EVENT
     self.fillEventBranches(event)
