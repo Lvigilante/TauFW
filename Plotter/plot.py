@@ -185,10 +185,11 @@ def main(args):
 if __name__ == "__main__":
   import sys
   from argparse import ArgumentParser
+  eras = ['2016','2017','2018','UL2016_preVFP','UL2016_postVFP','UL2017','UL2018']
   argv = sys.argv
   description = """Simple plotting script for pico analysis tuples"""
   parser = ArgumentParser(prog="plot",description=description,epilog="Good luck!")
-  parser.add_argument('-y', '--era',     dest='eras', nargs='*', choices=['2016','2017','2018','UL2017'], default=['2017'], action='store',
+  parser.add_argument('-y', '--era',     dest='eras', nargs='*', choices=eras, default=['2017'], action='store',
                                          help="set era" )
   parser.add_argument('-c', '--channel', dest='channels', nargs='*', choices=['mutau','etau'], default=['mutau'], action='store',
                                          help="set channel" )
