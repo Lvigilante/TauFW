@@ -41,6 +41,7 @@ def getsampleset(channel,era,**kwargs):
       ( 'DY', "DY2JetsToLL_M-50",      "Drell-Yan 2J 50",      304.4, {'extraweight': dyweight} ),
       ( 'DY', "DY3JetsToLL_M-50",      "Drell-Yan 3J 50",      111.5, {'extraweight': dyweight} ),
       ( 'DY', "DY4JetsToLL_M-50",      "Drell-Yan 4J 50",      44.05, {'extraweight': dyweight} ),
+      ###( 'DY', "DYJetsToMuTauh_M-50",   "DYJetsToMuTauh_M-50", 5343.0, {'extraweight': dyweight} ),
       ( 'WJ', "WJetsToLNu",            "W + jets",           52940.0  ),
       ( 'WJ', "W1JetsToLNu",           "W + 1J",              8104.0  ),
       ( 'WJ', "W2JetsToLNu",           "W + 2J",              2793.0  ),
