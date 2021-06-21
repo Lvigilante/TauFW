@@ -14,7 +14,8 @@
     "UL2017": "ETauFakeRate/samples_UL2017.py", 
     "UL2016": "ETauFakeRate/samples_UL2016.py", 
     "UL2016_preVFP": "ETauFakeRate/samples_UL2016_preVFP.py", 
-    "UL2018": "ETauFakeRate/samples_UL2018.py"
+    "UL2018": "ETauFakeRate/samples_UL2018.py", 
+    "UL2016_postVFP": "ETauFakeRate/samples_UL2016_postVFP.py"
   }, 
   "nfilesperjob": 5, 
   "filelistdir": "samples/files/$ERA/$SAMPLE.txt", 

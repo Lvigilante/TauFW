@@ -86,16 +86,16 @@ samples  = [
     store=storage,url=url,files=filelist,opts="useT1=True"),
   
   # SINGLE MUON
-  D('Data','SingleMuon_Run2016B',"/SingleMuon/Run2016B-ver2_HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
-  D('Data','SingleMuon_Run2016C',"/SingleMuon/Run2016C-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
-  D('Data','SingleMuon_Run2016D',"/SingleMuon/Run2016D-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
-  D('Data','SingleMuon_Run2016E',"/SingleMuon/Run2016E-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
-  D('Data','SingleMuon_Run2016F',"/SingleMuon/Run2016F-HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
+  #D('Data','SingleMuon_Run2016B',"/SingleMuon/Run2016B-ver2_HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
+  #D('Data','SingleMuon_Run2016C',"/SingleMuon/Run2016C-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
+  #D('Data','SingleMuon_Run2016D',"/SingleMuon/Run2016D-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
+  #D('Data','SingleMuon_Run2016E',"/SingleMuon/Run2016E-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
+  #D('Data','SingleMuon_Run2016F',"/SingleMuon/Run2016F-HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'mutau','mumu','emu']),
   
   # SINGLE ELECTRON
   D('Data','SingleElectron_Run2016B',"/SingleElectron/Run2016B-ver2_HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
@@ -110,15 +110,15 @@ samples  = [
     store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'etau','ee']),
   
   # TAU
-  D('Data','Tau_Run2016B',"/Tau/Run2016B-ver2_HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
-  D('Data','Tau_Run2016C',"/Tau/Run2016C-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
-  D('Data','Tau_Run2016D',"/Tau/Run2016D-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
-  D('Data','Tau_Run2016E',"/Tau/Run2016E-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
-  D('Data','Tau_Run2016F',"/Tau/Run2016F-HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
-    store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
+  #D('Data','Tau_Run2016B',"/Tau/Run2016B-ver2_HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
+  #D('Data','Tau_Run2016C',"/Tau/Run2016C-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
+  #D('Data','Tau_Run2016D',"/Tau/Run2016D-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
+  #D('Data','Tau_Run2016E',"/Tau/Run2016E-UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
+  #D('Data','Tau_Run2016F',"/Tau/Run2016F-HIPM_UL2016_MiniAODv1_NanoAODv2-v1/NANOAOD", # HIP-mitigated
+  #  store=storage,url=url,files=filelist,opts="useT1=False",channels=["skim*",'tautau']),
   
 ]

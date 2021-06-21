@@ -121,7 +121,7 @@ def plot(sampleset,channel,parallel=True,tag="",outdir="plots",era="",pdf=False)
   
   # VARIABLES
   variables = [
-     Var('m_vis',  11,  60, 120),
+     #Var('m_vis',  11,  60, 120),
      #Var('m_vis',  1,  60, 120),                                                                                                                                                   
      Var('pt_1',  "Muon pt",    40,  35, 120, ctitle={'etau':"Electron pt",'tautau':"Leading tau_h pt",'emu':"Electron pt"}),
      Var('pt_2',  "tau_h pt",   40,  20, 120, ctitle={'tautau':"Subleading tau_h pt",'emu':"Muon pt"}),
@@ -141,7 +141,7 @@ def plot(sampleset,channel,parallel=True,tag="",outdir="plots",era="",pdf=False)
      Var('dR_ll',   "DR(mutau_h)",    30, 0, 6.0, ctitle={'etau':"DR(etau_h)",'tautau':"DR(tau_htau_h)",'emu':"DR(emu)"}),                                                         
      Var('deta_ll', "deta(mutau_h)",  20, 0, 6.0, ctitle={'etau':"deta(etau_h)",'tautau':"deta(tautau)",'emu':"deta(emu)"},logy=True,pos='TRR'), #, ymargin=8, logyrange=2.6       
      Var('dzeta',  56, -180, 100, pos='L;y=0.88',units='GeV'),                                                                                                                     
-     Var("pzetavis", 50,    0, 200 ),                                                                                                                                              
+     #Var("pzetavis", 50,    0, 200 ),                                                                                                                                              
      Var('rawDeepTau2017v2p1VSjet_2', "rawDeepTau2017v2p1VSjet", 100, 0.0, 1, ncols=2,pos='L;y=0.85',logy=True,ymargin=2.5),
      Var('rawDeepTau2017v2p1VSjet_2', "rawDeepTau2017v2p1VSjet", 20, 0.80, 1, fname="$VAR_zoom",ncols=2,pos='L;y=0.85'),
      Var('rawDeepTau2017v2p1VSe_2',   "rawDeepTau2017v2p1VSe",   100, 0.0, 1, fname="$VAR",ncols=2,ymin=1.0, logy=True,pos='L;y=0.85'),
