@@ -1,4 +1,4 @@
-*.pyc
+ *.pyc
 *.d
 *.so
 *.pcm
@@ -14,6 +14,7 @@ PicoProducer/output
 PicoProducer/output_2017ReReco18
 PicoProducer/output_ETauFR
 Plotter/plots
+PicoProducer/output_ETauFR_UL17_RUN1
 PicoProducer/output_ETauFR2/
 PicoProducer/output_ETauFR3/
 Plotter/plots_18_02_21/

@@ -1,5 +1,5 @@
 {
-  "time": "2021-06-07 22:55:40.641704", 
+  "time": "2021-06-23 16:10:06.374907", 
   "group": "Data", 
   "paths": [
     "/SingleElectron/Run2017B-UL2017_MiniAODv1_NanoAODv2-v1/NANOAOD"
@@ -20,7 +20,7 @@
   "try": 1, 
   "queue": null, 
   "jobids": [
-    2367895
+    2407925
   ], 
   "prefetch": false, 
   "outdir": "/eos/home-l/lvigilan/output_ETauFR_UL17_RUN1/UL2017/etau/SingleElectron_Run2017B", 

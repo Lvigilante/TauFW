@@ -1,5 +1,5 @@
 {
-  "time": "2021-06-07 22:55:22.755273", 
+  "time": "2021-06-23 16:09:47.474672", 
   "group": "ST", 
   "paths": [
     "/ST_tW_antitop_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer19UL17NanoAODv2-106X_mc2017_realistic_v8-v1/NANOAODSIM"
@@ -20,7 +20,7 @@
   "try": 1, 
   "queue": null, 
   "jobids": [
-    2367882
+    2407912
   ], 
   "prefetch": false, 
   "outdir": "/eos/home-l/lvigilan/output_ETauFR_UL17_RUN1/UL2017/etau/ST_tW_antitop", 

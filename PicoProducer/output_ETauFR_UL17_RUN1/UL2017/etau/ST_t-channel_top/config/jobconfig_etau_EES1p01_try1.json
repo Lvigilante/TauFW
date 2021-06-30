@@ -1,5 +1,5 @@
 {
-  "time": "2021-06-08 10:09:41.268817", 
+  "time": "2021-06-23 17:44:55.239693", 
   "group": "ST", 
   "paths": [
     "/ST_t-channel_top_5f_InclusiveDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer19UL17NanoAODv2-106X_mc2017_realistic_v8-v1/NANOAODSIM"
@@ -20,7 +20,7 @@
   "try": 1, 
   "queue": null, 
   "jobids": [
-    2368950
+    2408933
   ], 
   "prefetch": false, 
   "outdir": "/eos/home-l/lvigilan/output_ETauFR_UL17_RUN1/UL2017/etau/ST_t-channel_top", 

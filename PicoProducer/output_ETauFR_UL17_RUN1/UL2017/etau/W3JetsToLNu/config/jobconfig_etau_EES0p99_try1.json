@@ -1,5 +1,5 @@
 {
-  "time": "2021-06-07 22:55:16.353007", 
+  "time": "2021-06-23 16:09:40.117744", 
   "group": "WJ", 
   "paths": [
     "/W3JetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer19UL17NanoAODv2-106X_mc2017_realistic_v8-v1/NANOAODSIM"
@@ -20,7 +20,7 @@
   "try": 1, 
   "queue": null, 
   "jobids": [
-    2367878
+    2407906
   ], 
   "prefetch": false, 
   "outdir": "/eos/home-l/lvigilan/output_ETauFR_UL17_RUN1/UL2017/etau/W3JetsToLNu", 

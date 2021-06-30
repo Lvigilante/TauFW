@@ -1,5 +1,5 @@
 {
-  "time": "2021-06-08 10:08:58.010724", 
+  "time": "2021-06-23 17:44:02.173088", 
   "group": "DY", 
   "paths": [
     "/DY2JetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/RunIISummer19UL17NanoAODv2-106X_mc2017_realistic_v8-v1/NANOAODSIM"
@@ -21,7 +21,7 @@
   "try": 1, 
   "queue": null, 
   "jobids": [
-    2368935
+    2408898
   ], 
   "prefetch": false, 
   "outdir": "/eos/home-l/lvigilan/output_ETauFR_UL17_RUN1/UL2017/etau/DY2JetsToLL_M-50", 

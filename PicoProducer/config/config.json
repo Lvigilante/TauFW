@@ -27,5 +27,6 @@
   "tmpskimdir": "", 
   "batch": "HTCondor", 
   "queue": "", 
-  "maxevtsperjob": -1
+  "maxevtsperjob": -1, 
+  "maxopenfiles": -1
 }

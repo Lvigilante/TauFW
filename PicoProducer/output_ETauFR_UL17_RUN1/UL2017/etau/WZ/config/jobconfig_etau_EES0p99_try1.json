@@ -1,5 +1,5 @@
 {
-  "time": "2021-06-07 22:55:36.607185", 
+  "time": "2021-06-23 16:10:00.676092", 
   "group": "VV", 
   "paths": [
     "/WZ_TuneCP5_13TeV-pythia8/RunIISummer20UL17NanoAODv2-106X_mc2017_realistic_v8-v1/NANOAODSIM"
@@ -20,7 +20,7 @@
   "try": 1, 
   "queue": null, 
   "jobids": [
-    2367891
+    2407923
   ], 
   "prefetch": false, 
   "outdir": "/eos/home-l/lvigilan/output_ETauFR_UL17_RUN1/UL2017/etau/WZ", 
