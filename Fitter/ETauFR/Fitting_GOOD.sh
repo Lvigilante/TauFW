@@ -1,5 +1,6 @@
 ###WIP###
-ERA=2016
+#ERA=2016
+ERA=UL2017
 OUTDIR=coutFR_$ERA
 mkdir $OUTDIR
 apath=/afs/cern.ch/work/l/lvigilan/TauWork/CMSSW_8_1_0/src/

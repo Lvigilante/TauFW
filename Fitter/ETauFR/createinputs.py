@@ -36,7 +36,8 @@ def main(args):
       # GET SAMPLESET
       join      = ['VV','TT','ST']
       sname     = "$PICODIR/$SAMPLE_$CHANNEL$TAG.root"
-      sampleset = getsampleset(channel,era,fname=sname,join=join,split=None,table=False)
+      sampleset = getsampleset(channel,era,fname=sname,join=join,split=None,table=False,
+                               rmsf=['idweight_2','ltfweight_2'])
       
       if channel=='mumu':
         
@@ -63,7 +64,15 @@ def main(args):
         GML = "genmatch_2>0 && genmatch_2<5"
         GMJ = "genmatch_2==0"
         GMF = "genmatch_2<5"
-        sampleset.split('DY',[('ZTT',GMR),('ZL',GML),('ZJ',GMJ),])
+        splitbydm = True and False # split by DM for public plots
+        if splitbydm:
+          sampleset.split('DY',[('ZTT_DM0', GMR+" && dm_2==0"), ('ZTT_DM1', GMR+" && dm_2==1"),
+                                ('ZTT_DM10',GMR+" && dm_2==10"),('ZTT_DM11',GMR+" && dm_2==11"),
+                                ('ZL',GML),('ZJ',GMJ)])
+          sampleset.get('DY',unique=True).replaceweight('*idweight_2','',verb=2) # remove tau ID SF
+        else:
+          sampleset.split('DY',[('ZTT',GMR),('ZL',GML),('ZJ',GMJ),])
+
         sampleset.split('TT',[('TTT',GMR),('TTL',GML),('TTJ',GMJ)])
         #sampleset.split('ST',[('STT',GMR),('STJ',GMF),]) # small background
         sampleset.rename('WJ','W')
@@ -84,10 +93,10 @@ def main(args):
           'Nom':     sampleset, # nominal
           'TESUp':   sampleset.shift(systs['TES'].procs,"_TES1p05",systs['TES'].up," +5% TES", split=True,filter=False,share=True),
           'TESDown': sampleset.shift(systs['TES'].procs,"_TES0p95",systs['TES'].dn," -5% TES", split=True,filter=False,share=True),
-          'FESUp':   sampleset.shift(systs['FES'].procs,"_FES1p25",systs['FES'].up," +25% FES", split=True,filter=False,share=True),
-          'FESDown': sampleset.shift(systs['FES'].procs,"_FES0p75",systs['FES'].dn," -25% FES", split=True,filter=False,share=True),
-          'EESUp':   sampleset.shift(systs['EES'].procs,"_EES1p01",systs['EES'].up," +1% EES", split=True,filter=False,share=True),
-          'EESDown': sampleset.shift(systs['EES'].procs,"_EES0p99",systs['EES'].dn," -1% EES", split=True,filter=False,share=True),
+          'FESUp':   sampleset.shift(systs['FES'].procs,"_FES1p40",systs['FES'].up," +40% FES", split=True,filter=False,share=True),
+          'FESDown': sampleset.shift(systs['FES'].procs,"_FES0p60",systs['FES'].dn," -40% FES", split=True,filter=False,share=True),
+          'EESUp':   sampleset.shift(systs['EES'].procs,"_EES1p05",systs['EES'].up," +5% EES", split=True,filter=False,share=True),
+          'EESDown': sampleset.shift(systs['EES'].procs,"_EES0p95",systs['EES'].dn," -5% EES", split=True,filter=False,share=True),
           #'RESUp':   sampleset.shift(systs['RES'].procs,"",systs['RES'].up," +3% mvisRES", split=True,filter=False,share=True),
           #'RESDown': sampleset.shift(systs['RES'].procs,"",systs['RES'].dn," -3% mvisRES", split=True,filter=False,share=True),
         }
@@ -196,7 +205,7 @@ def main(args):
       
       else:
         
-        tauwps    = ['VVVLoose']#,'VVLoose','VLoose','Loose','Medium','Tight','VTight','VVTight']
+        tauwps    = ['VVVLoose','VVLoose','VLoose','Loose','Medium','Tight','VTight','VVTight']
         if channel=='mutau' :
           tauwps    = ['VLoose','Loose','Medium','Tight']
         tauwpbits = { wp: 2**i for i, wp in enumerate(tauwps)}
@@ -275,10 +284,11 @@ def main(args):
 
 if __name__ == "__main__":
   from argparse import ArgumentParser
+  eras = ['2016','2017','2018','UL2016_preVFP','UL2016_postVFP','UL2017','UL2018']
   argv = sys.argv
   description = """Create input histograms for datacards"""
   parser = ArgumentParser(prog="createInputs",description=description,epilog="Good luck!")
-  parser.add_argument('-y', '--era',     dest='eras', nargs='*', choices=['2016','2017','2018','UL2017'], default=['UL2017'], action='store',
+  parser.add_argument('-y', '--era',     dest='eras', nargs='*', choices=eras, default=['UL2017'], action='store',
                                          help="set era" )
   parser.add_argument('-c', '--channel', dest='channels', nargs='*', choices=['mutau','mumu','etau'], default=['etau'], action='store',
                                          help="set channel" )
