@@ -1,8 +1,8 @@
 #!/bin/bash
 filename=PlotShapes.C
-
+#("VVLoose"
 declare -a arr=("VVLoose" "VLoose" "Loose" "Medium" "Tight" "VTight" "VVTight")
-
+#declare -a arr=("VVLoose")
 part="VVLoose"
 ## now loop through the above array
 for i in "${arr[@]}"

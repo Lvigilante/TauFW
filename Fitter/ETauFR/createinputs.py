@@ -64,14 +64,14 @@ def main(args):
         GML = "genmatch_2>0 && genmatch_2<5"
         GMJ = "genmatch_2==0"
         GMF = "genmatch_2<5"
-        splitbydm = True and False # split by DM for public plots
-        if splitbydm:
-          sampleset.split('DY',[('ZTT_DM0', GMR+" && dm_2==0"), ('ZTT_DM1', GMR+" && dm_2==1"),
-                                ('ZTT_DM10',GMR+" && dm_2==10"),('ZTT_DM11',GMR+" && dm_2==11"),
-                                ('ZL',GML),('ZJ',GMJ)])
-          sampleset.get('DY',unique=True).replaceweight('*idweight_2','',verb=2) # remove tau ID SF
-        else:
-          sampleset.split('DY',[('ZTT',GMR),('ZL',GML),('ZJ',GMJ),])
+        #splitbydm = True and False # split by DM for public plots
+        #if splitbydm:
+        #  sampleset.split('DY',[('ZTT_DM0', GMR+" && dm_2==0"), ('ZTT_DM1', GMR+" && dm_2==1"),
+        #                        ('ZTT_DM10',GMR+" && dm_2==10"),('ZTT_DM11',GMR+" && dm_2==11"),
+        #                        ('ZL',GML),('ZJ',GMJ)])
+        #  sampleset.get('DY',unique=True).replaceweight('*idweight_2','',verb=2) # remove tau ID SF
+        #else:
+        sampleset.split('DY',[('ZTT',GMR),('ZL',GML),('ZJ',GMJ),])
 
         sampleset.split('TT',[('TTT',GMR),('TTL',GML),('TTJ',GMJ)])
         #sampleset.split('ST',[('STT',GMR),('STJ',GMF),]) # small background

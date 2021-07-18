@@ -26,10 +26,12 @@ void PlotShapes(
 		TString varName= "m_vis",
 		TString xtitle = "m_{vis} [GeV]",
 		TString ytitle = "dN/dm_{vis}[1/GeV]",
-		TString era = "UL2016_preVFP",
+		//TString era = "UL2016_preVFP",
+		//SET YOUR ERA HERE !!!!!!
+		TString era = "UL2017",
 		//CHOOSE YOUR ETARANGE
-		TString eta = "Lt1p46",
-		//TString eta = "Lt2p300",
+		//TString eta = "Lt1p46",
+		TString eta = "Lt2p300",
 		TString wp = "VVLoose",
 		float xmin = 60,
 		float xmax = 120,
@@ -44,9 +46,9 @@ void PlotShapes(
   //SetStyle();
   //SET YOUR LUMI HERE AND IN THE CANVAS BELOW !!!!!!
   //float lumi= 59970;
-  //float lumi = 41860;//UL17
+  float lumi = 41860;//UL17
   //float lumi = 59800;//UL18
-  float lumi = 19500;//UL16_preVFP
+  //float lumi = 19500;//UL16_preVFP
 
   //Deal with bins and binning
   float xMin = xmin;
@@ -73,7 +75,7 @@ void PlotShapes(
     
 
   cout << "Accessing the File" <<endl;
-  //SET YOUR ERA HERE !!!!!!
+  
   TFile * file = new TFile("../PostFitShape/"+era+"/ETauFR"+wp+eta+"_PostFitShape.root");
   cout << "File opened!" <<endl;
   TH1D * data_obs = (TH1D*)file->Get("/"+wp+suffixPassOrFail+suffix+"/data_obs");
@@ -295,9 +297,9 @@ void PlotShapes(
 
   //SET YOUR LLUMI HERE !!!!!!
   //TLatex * cms = new TLatex(0.65,0.94,"L = 59.9 fb^{-1} at #sqrt{s} = 13 TeV");
-  //TLatex * cms = new TLatex(0.65,0.94,"L = 41.86 fb^{-1} at #sqrt{s} = 13 TeV");//UL17
+  TLatex * cms = new TLatex(0.65,0.94,"L = 41.86 fb^{-1} at #sqrt{s} = 13 TeV");//UL17
   //TLatex * cms = new TLatex(0.65,0.94,"L = 59.8 fb^{-1} at #sqrt{s} = 13 TeV");//UL18
-  TLatex * cms = new TLatex(0.65,0.94,"L = 19.5 fb^{-1} at #sqrt{s} = 13 TeV");//UL16_preVFP
+  //TLatex * cms = new TLatex(0.65,0.94,"L = 19.5 fb^{-1} at #sqrt{s} = 13 TeV");//UL16_preVFP
 
   cms->SetNDC();
   cms->SetTextSize(0.05);

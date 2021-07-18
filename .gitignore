@@ -13,6 +13,7 @@ PicoProducer/samples/files
 PicoProducer/output
 PicoProducer/output_2017ReReco18
 PicoProducer/output_ETauFR
+PicoProducer/output_ETauFR_UL17_RUN1
 Plotter/plots
 PicoProducer/output_ETauFR_UL17_RUN1
 PicoProducer/output_ETauFR2/
@@ -20,4 +21,11 @@ PicoProducer/output_ETauFR3/
 Plotter/plots_18_02_21/
 Fitter/ETauFR/input
 Fitter/ETauFR/coutFR_2016
+Fitter/ETauFR/coutFR_UL2017
+Fitter/ETauFR/coutFR_UL2018
+Fitter/ETauFR/coutFR_UL2016_preVFP
 Fitter/ETauFR/input/plots/2016/
+Fitter/ETauFR/Plotter/macrosOfPlots
+Fitter/ETauFR/Plotter/Pre-PostFitPlots
+Fitter/ETauFR/Plotter/Pre-PostFitPlots_ULALL1
+PicoProducer/output_ETauFR_UL17_RUN1

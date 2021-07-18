@@ -18,8 +18,8 @@
 #pico.py hadd -y UL2018 -c etau  -E 'fes=0.75' -t _FES0p75
 #pico.py hadd -y UL2018 -c etau  -E 'fes=1.25' -t _FES1p25
 
-#pico.py hadd -y UL2018 -c etau  -E 'tes=0.95' -t _TES0p95
-#pico.py hadd -y UL2018 -c etau  -E 'tes=1.05' -t _TES1p05
+pico.py hadd -y UL2018 -c etau  -E 'tes=0.95' -t _TES0p95
+pico.py hadd -y UL2018 -c etau  -E 'tes=1.05' -t _TES1p05
 
 #pico.py hadd -y UL2016_preVFP -c etau 
 

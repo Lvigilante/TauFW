@@ -11,7 +11,7 @@ eta = ['0to1.46','1.56to2.3']#'0.8to1.2','1.2to1.7','1.7to3.0']
 wp = ['VVVLoose','VVLoose','VLoose','Loose','Medium','Tight','VTight','VVTight']
 
 ####SWITCH YOUR era HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-era='UL2018'
+era='UL2016_preVFP'
 for ieta in eta :
     print '<<<<<<< eta range: ', ieta
     for iwp in wp :
