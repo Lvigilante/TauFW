@@ -3,10 +3,11 @@
 # Description: Simple plotting script for pico analysis tuples
 #   ./plot.py -c mutau -y 2018
 from config.samples import *
+from TauFW.Plotter.plot.string import filtervars
 from TauFW.Plotter.plot.utils import LOG as PLOG
 
 
-def plot(sampleset,channel,parallel=True,tag="",outdir="plots",era="",pdf=False):
+def plot(sampleset,channel,parallel=True,tag="",outdir="plots",era="",varfilter=None,selfilter=None,pdf=False):
   """Test plotting of SampleSet class for data/MC comparison."""
   LOG.header("plot")
   
@@ -118,9 +119,13 @@ def plot(sampleset,channel,parallel=True,tag="",outdir="plots",era="",pdf=False)
     #Sel('DTM4_VSjM-VSeM',DTM_tot_cuts4),                                                                                                                                          
     #Sel('mt1_VSjM',tot_mt1_cuts1),   
   ]
+  selections = filtervars(selections,selfilter) # filter variable list with -V flag
   
   # VARIABLES
+  loadmacro("python/macros/mapDecayModes.C") # for mapRecoDM
+  dmlabels  = ["h^{#pm}","h^{#pm}h^{0}","h^{#pm}h^{#mp}h^{#pm}","h^{#pm}h^{#mp}h^{#pm}h^{0}","Other"]
   variables = [
+
      #Var('m_vis',  11,  60, 120),
      #Var('m_vis',  1,  60, 120),                                                                                                                                                   
      Var('pt_1',  "Muon pt",    40,  35, 120, ctitle={'etau':"Electron pt",'tautau':"Leading tau_h pt",'emu':"Electron pt"}),
@@ -141,7 +146,8 @@ def plot(sampleset,channel,parallel=True,tag="",outdir="plots",era="",pdf=False)
      Var('dR_ll',   "DR(mutau_h)",    30, 0, 6.0, ctitle={'etau':"DR(etau_h)",'tautau':"DR(tau_htau_h)",'emu':"DR(emu)"}),                                                         
      #Var('deta_ll', "deta(mutau_h)",  20, 0, 6.0, ctitle={'etau':"deta(etau_h)",'tautau':"deta(tautau)",'emu':"deta(emu)"},logy=True,pos='TRR'), #, ymargin=8, logyrange=2.6       
      #Var('dzeta',  56, -180, 100, pos='L;y=0.88',units='GeV'),                                                                                                                     
-     #Var("pzetavis", 50,    0, 200 ),                                                                                                                                              
+  #Var("pzetavis", 50,    0, 200 ),
+       # Var("mapRecoDM(dm_2)",      5,  0,   5, fname="dm_2_label",title="Reconstructed tau_h decay mode",veto="dm_2==",position="TT",labels=dmlabels,ymargin=1.2),
      #Var('rawDeepTau2017v2p1VSjet_2', "rawDeepTau2017v2p1VSjet", 100, 0.0, 1, ncols=2,pos='L;y=0.85',logy=True,ymargin=2.5),
      #Var('rawDeepTau2017v2p1VSjet_2', "rawDeepTau2017v2p1VSjet", 20, 0.80, 1, fname="$VAR_zoom",ncols=2,pos='L;y=0.85'),
      #Var('rawDeepTau2017v2p1VSe_2',   "rawDeepTau2017v2p1VSe",   100, 0.0, 1, fname="$VAR",ncols=2,ymin=1.0, logy=True,pos='L;y=0.85'),
@@ -150,6 +156,7 @@ def plot(sampleset,channel,parallel=True,tag="",outdir="plots",era="",pdf=False)
      #Var('rawDeepTau2017v2p1VSmu_2',  "rawDeepTau2017v2p1VSmu",  20, 0.80, 1, fname="$VAR_zoom",ncols=2,logy=True,logyrange=4,pos='L;y=0.85'),
      #Var('npv',    40,    0,  80 ),     
   ]
+  variables = filtervars(variables,varfilter) # filter variable list with -V flag
   
   # PLOT
   outdir   = ensuredir(repkey(outdir,CHANNEL=channel,ERA=era))
@@ -168,18 +175,21 @@ def plot(sampleset,channel,parallel=True,tag="",outdir="plots",era="",pdf=False)
   
 
 def main(args):
-  channels = args.channels
-  eras     = args.eras
-  parallel = args.parallel
-  tag      = args.tag
-  pdf      = args.pdf
-  outdir   = "plots/$ERA"
-  fname    = "$PICODIR/$SAMPLE_$CHANNEL$TAG.root"
+  channels  = args.channels
+  eras      = args.eras
+  parallel  = args.parallel
+  varfilter = args.varfilter
+  selfilter = args.selfilter
+  tag       = args.tag
+  pdf       = args.pdf
+  outdir    = "plots/$ERA"
+  fname     = "$PICODIR/$SAMPLE_$CHANNEL$TAG.root"
   for era in eras:
     for channel in channels:
       setera(era) # set era for plot style and lumi-xsec normalization
       sampleset = getsampleset(channel,era,fname=fname, rmsf=['idweight_2','ltfweight_2'])
-      plot(sampleset,channel,parallel=parallel,tag=tag,outdir=outdir,era=era,pdf=pdf)
+      plot(sampleset,channel,parallel=parallel,tag=tag,outdir=outdir,era=era,varfilter=varfilter,selfilter=selfilter,pdf=pdf)
+      sampleset.close()
   
 
 if __name__ == "__main__":
@@ -189,15 +199,19 @@ if __name__ == "__main__":
   argv = sys.argv
   description = """Simple plotting script for pico analysis tuples"""
   parser = ArgumentParser(prog="plot",description=description,epilog="Good luck!")
-  parser.add_argument('-y', '--era',     dest='eras', nargs='*', choices=eras, default=['2017'], action='store',
+  parser.add_argument('-y', '--era',     dest='eras', nargs='*', choices=eras, default=['2017'],
                                          help="set era" )
   parser.add_argument('-c', '--channel', dest='channels', nargs='*', choices=['mutau','etau'], default=['mutau'], action='store',
                                          help="set channel" )
+  parser.add_argument('-V', '--var',     dest='varfilter', nargs='+',
+                                         help="only plot the variables passing this filter (glob patterns allowed)" )
+  parser.add_argument('-S', '--sel',     dest='selfilter', nargs='+',
+                                         help="only plot the selection passing this filter (glob patterns allowed)" )
   parser.add_argument('-s', '--serial',  dest='parallel', action='store_false',
                                          help="run Tree::MultiDraw serial instead of in parallel" )
   parser.add_argument('-p', '--pdf',     dest='pdf', action='store_true',
                                          help="create pdf version of each plot" )
-  parser.add_argument('-t', '--tag',     dest='tag', help="extra tag for output" )
+  parser.add_argument('-t', '--tag',     default="", help="extra tag for output" )
   parser.add_argument('-v', '--verbose', dest='verbosity', type=int, nargs='?', const=1, default=0, action='store',
                                          help="set verbosity" )
   args = parser.parse_args()

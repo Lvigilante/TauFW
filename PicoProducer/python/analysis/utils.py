@@ -3,6 +3,7 @@
 import os, sys
 from math import sqrt, sin, cos, pi, log10, floor
 from itertools import combinations
+import ROOT; ROOT.PyConfig.IgnoreCommandLineOptions = True
 from ROOT import TH1D, TLorentzVector
 from TauFW.PicoProducer import basedir
 from TauFW.common.tools.utils import getyear, convertstr # for picojob.py
@@ -366,9 +367,10 @@ class Cutflow(object):
     denstr = str(ntot).rjust(int(floor(log10(ntot)))+2)
     for cut, index in sorted(self.cuts.items(),key=lambda x: x[1]):
       nevts = self.hist.GetBinContent(1+index)
+      title = self.hist.GetXaxis().GetBinLabel(1+index) or cut
       frac  = "= %6.2f%%"%(100.0*nevts/ntot) if ntot!=0. else " "
       nomstr = str(nevts).rjust(padevt)
-      print ">>> %4d: %s / %s %s   %s"%(index,nomstr,denstr,frac,cut) #.rjust(padcut)
+      print ">>> %4d: %s / %s %s   %s"%(index,nomstr,denstr,frac,title) #.rjust(padcut)
     
   
   

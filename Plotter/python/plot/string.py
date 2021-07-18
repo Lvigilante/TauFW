@@ -4,10 +4,10 @@ import re
 from TauFW.Plotter.plot.utils import LOG, unwraplistargs, ensurelist, islist
 
 var_dict = {
-    'njets':     "Number of jets",          'njets20':  "Number of jets (pt>20 GeV)",
+    'njets':     "Number of jets",          'njets20':  "Number of jets (pt>20 GeV)",          'njets50':  "Number of jets (pt>50 GeV)",
     'nfjets':    "Number of forward jets",  'nfjets20': "Number of forward jets (pt>20 GeV)",
     'ncjets':    "Number of central jets",  'ncjets20': "Number of central jets (pt>20 GeV)",
-    'nbtag':     "Number of b tagged jets", 'nbtag20':  "Number of b tagged jets (pt>20 GeV)",
+    'nbtag':     "Number of b tagged jets", 'nbtag20':  "Number of b tagged jets (pt>20 GeV)", 'nbtag50':  "Number of b tagged jets (pt>50 GeV)",
     'jpt_1':     "Leading jet pt",          'jpt_2':    "Subleading jet pt",
     'bpt_1':     "Leading b jet pt",        'bpt_2':    "Subleading b jet pt",
     'jeta_1':    "Leading jet eta",         'jeta_2':   "Subleading jet eta",
@@ -101,8 +101,11 @@ def makelatex(string,**kwargs):
     elif "m_" in strlow:
       string = re.sub(r"(?<!u)(m)_([^{}()|<>=\ \^]+)",r"\1_{\2}",string,flags=re.IGNORECASE).replace('{t}','{T}')
       GeV    = True
-    elif "mt_" in strlow:
-      string = re.sub(r"(m)t_([^{}()|<>=\ ]+)",r"\1_{T}^{\2}",string,flags=re.IGNORECASE)
+    elif "mt" in strlow:
+      if "mt_" in strlow:
+        string = re.sub(r"(m)t_([^{}()|<>=\ ]+)",r"\1_{T}^{\2}",string,flags=re.IGNORECASE)
+      else: # "naked" mt
+        string = re.sub(r"(?<!\w)(m)t(?!\w)",r"\1_{T}",string,flags=re.IGNORECASE)
       GeV    = True
     if re.search(r"(?<!weig)(?<!daug)ht(?!au)",strlow): # HT
       string = re.sub(r"\b(h)t\b",r"\1_{T}",string,flags=re.IGNORECASE)
@@ -218,6 +221,7 @@ def makefilename(*strings,**kwargs):
     fname = re.sub(r"(?<!zoo)m_t(?!au)",r"mt",fname)
   fname = fname.replace(" and ",'-').replace(',','-').replace(',','-').replace('+','-').replace('::','-').replace(':','-').replace(
                         '(','-').replace(')','').replace('{','').replace('}','').replace(
+                        '\n','-').replace('\\','').replace('/','-').replace(
                         '|','').replace('&','').replace('#','').replace('!','not').replace(
                         'pt_mu','pt').replace('m_T','mt').replace(
                         '>=',"geq").replace('<=',"leq").replace('>',"gt").replace('<',"lt").replace("=","eq").replace(
@@ -255,7 +259,7 @@ def estimatelen(*strings):
 def match(terms, labels, **kwargs):
   """Match given search terms (strings) to some given list of labels."""
   verbosity = LOG.getverbosity(kwargs)
-  terms     = ensurelist(terms, nonzero=True) # search terms
+  terms     = ensurelist(terms, nonzero=True) # search terms / filters
   labels    = ensurelist(labels,nonzero=True) # labels to match to
   found     = True
   regex     = kwargs.get('regex', False ) # use regexpr patterns (instead of glob)
@@ -580,4 +584,19 @@ def getselstr(string,**kwargs):
   return string
   
 
+def filtervars(vars,filters,**kwargs):
+  """Filter list of variables. Allow glob patterns."""
+  verbosity = LOG.getverbosity(kwargs)
+  newvars   = [ ]
+  if not filters:
+    return vars[:]
+  for var in vars:
+    if any(match(f,[var.name,var.filename]) for f in filters):
+      newvars.append(var)
+      LOG.verb("filtervars: Matched %r, including..."%(var),verbosity,2)
+    else:
+      LOG.verb("filtervars: No match to %r, ignoring..."%(var),verbosity,2)
+  return newvars
+
 #from TauFW.Plotter.plot.Selection import Selection
+

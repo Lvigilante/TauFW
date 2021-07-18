@@ -29,3 +29,7 @@ Fitter/ETauFR/Plotter/macrosOfPlots
 Fitter/ETauFR/Plotter/Pre-PostFitPlots
 Fitter/ETauFR/Plotter/Pre-PostFitPlots_ULALL1
 PicoProducer/output_ETauFR_UL17_RUN1
+Fitter/*/*plots*
+Fitter/*/log
+Fitter/Zpt/weights
+
